@@ -59,11 +59,11 @@ func main() {
 		},
 	}
 	fmt.Println("Creating pod...")
-	result, err := podClient.Create(context.TODO(), pod, metav1.CreateOptions{})
+	podresult, err := podClient.Create(context.TODO(), pod, metav1.CreateOptions{})
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Created pod %q.\n", result.GetObjectMeta().GetName())
+	fmt.Printf("Created pod %q.\n", podresult.GetObjectMeta().GetName())
 
 	deploymentsClient := clientset.AppsV1().Deployments(apiv1.NamespaceDefault)
 
