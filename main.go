@@ -43,6 +43,28 @@ func main() {
 		panic(err)
 	}
 
+	podClient := clientset.CoreV1().Pods(apiv1.NamespaceDefault)
+	pod := &apiv1.Pod{
+		ObjectMeta: metav1.ObjectMeta{Name: "rtw"},
+		Spec: apiv1.PodSpec{
+			RestartPolicy: apiv1.RestartPolicyNever,
+			Containers: []apiv1.Container{
+				apiv1.Container{
+					Name:    "main",
+					Image:   "python:3.8",
+					Command: []string{"python"},
+					Args:    []string{"-c", "print('hello world')"},
+				},
+			},
+		},
+	}
+	fmt.Println("Creating pod...")
+	result, err := podClient.Create(context.TODO(), pod, metav1.CreateOptions{})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Created pod %q.\n", result.GetObjectMeta().GetName())
+
 	deploymentsClient := clientset.AppsV1().Deployments(apiv1.NamespaceDefault)
 
 	deployment := &appsv1.Deployment{
