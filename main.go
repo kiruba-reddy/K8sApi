@@ -135,15 +135,15 @@ func main() {
 	}
 
 	// Delete Deployment
-	prompt()
-	fmt.Println("Deleting deployment...")
-	deletePolicy := metav1.DeletePropagationForeground
-	if err := deploymentsClient.Delete(context.TODO(), "demo-deployment", metav1.DeleteOptions{
-		PropagationPolicy: &deletePolicy,
-	}); err != nil {
-		panic(err)
-	}
-	fmt.Println("Deleted deployment.")
+	// prompt()
+	// fmt.Println("Deleting deployment...")
+	// deletePolicy := metav1.DeletePropagationForeground
+	// if err := deploymentsClient.Delete(context.TODO(), "demo-deployment", metav1.DeleteOptions{
+	// 	PropagationPolicy: &deletePolicy,
+	// }); err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Println("Deleted deployment.")
 }
 
 func prompt() {
